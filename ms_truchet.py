@@ -11,7 +11,7 @@ class MultiScaleTruchetPattern:
         self.bg_color = bg_color
         self.fg_color = fg_color
 
-    def bb_from_center_and_radius(self, center: set, radius: int) -> set:
+    def bb_from_center_and_radius(self, center: set, radius: int) -> list:
         upper_left = (center[0]-radius, center[1]-radius)
         lower_right = (center[0]+radius, center[1]+radius)
         return [upper_left, lower_right]
