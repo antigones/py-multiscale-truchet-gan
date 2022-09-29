@@ -199,9 +199,8 @@ class MultiScaleTruchetPattern:
         img = Image.new("RGBA", (w + 4*r, h + 4*r))
         for i in range(how_many_subtiles_per_column):
             for j in range(how_many_subtiles_per_row):
-                which_tile = rd.randint(0,len(self.SYMBOLS)-1)
                 offset = ( r + j * subtile_size, r + i * subtile_size)
-                base_tile = self.create_base_tile(subtile_size,bg_color, fg_color, kind=self.SYMBOLS[which_tile])
+                base_tile = self.create_base_tile(subtile_size,bg_color, fg_color, kind=rd.choice(self.SYMBOLS))
                 img.paste(base_tile, offset, base_tile.convert("RGBA"))
         return img
 
@@ -214,12 +213,10 @@ class MultiScaleTruchetPattern:
         for i in range(self.how_many_tiles):
             for j in range(self.how_many_tiles):
                 offset = (i * self.tile_size, j * self.tile_size)
-                # should_paint_sub = rd.randint(0,1)
                 if i % 2:
                     base_tile = self.paint_a_multiscale_subtile(2,2,self.tile_size//2,'black', 'white')
                 else:
-                    which_tile = rd.randint(0,len(self.SYMBOLS)-1)
-                    base_tile = self.create_base_tile(self.tile_size,'white', 'black', kind=self.SYMBOLS[which_tile])
+                    base_tile = self.create_base_tile(self.tile_size,'white', 'black', kind=rd.choice(self.SYMBOLS))
                 img.paste(base_tile, offset, base_tile.convert("RGBA"))
 
         return img
